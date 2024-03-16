@@ -1,0 +1,433 @@
+<html>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+    <head>
+        <title>{Title}</title>
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        {block:Description}
+            <meta name="description" content="{MetaDescription}" />
+        {/block:Description}
+        <meta name="text:Link1" content=""/>
+        <meta name="text:Link1Url" content=""/>
+        <meta name="text:Link2" content=""/>
+        <meta name="text:Link2Url" content=""/>
+        <meta name="text:Link3" content=""/>
+        <meta name="text:Link3Url" content=""/>
+        <meta name="text:Link4" content=""/>
+        <meta name="text:Link4Url" content=""/>
+        <meta name="text:Link5" content=""/>
+        <meta name="text:Link5Url" content=""/>
+        <meta name="text:Link6" content=""/>
+        <meta name="text:Link6Url" content=""/>
+        <meta name="text:Link7" content=""/>
+        <meta name="text:Link7Url" content=""/>
+
+    </head>
+    
+<style type="text/css">
+
+*{
+    box-sizing: border-box;
+    cursor: none;
+    animation: fadein 2s;
+}
+
+.cursor1 {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: dodgerblue;
+  border-radius: 100px;
+  transform: rotate(45deg);
+  cursor: none;
+  filter: blur(0.2px);
+  pointer-events: none;
+  transition: 0.3s ease-out;
+  z-index: 1;
+}
+
+body{
+    animation: fadein 2s;
+    display: flex;
+    font-family: Arial;
+    font-size: 12px;
+    color: #1e90ff;
+}
+
+h1{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#sidebar{
+    position: fixed;
+    height: 100%;
+    width: 25%;
+    padding-top: 5%;
+    
+}
+
+#sidebar #links ul{
+  color: #1e90ff;
+  margin: auto;
+  padding: 5px;
+  background-color: white;
+  font-family: Arial;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+#sidebar a{
+  color: #1e90ff;
+  text-decoration: none;
+  transition: ease-in-out 0.5s;
+}
+
+#sidebar a:hover{
+  font-weight: bold;
+  border: none;
+  letter-spacing: 1px;
+  transition: ease-in-out 0.5s;
+}
+
+#sidebar h1{
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px;
+}
+
+#sbicon{
+    border:1px solid #1e90ff;
+    padding: 4px;
+    border-radius: 100px;
+    width: 30%;
+}
+
+#sbicon img{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 100px;
+}
+
+#desc{
+    font-size: 12px;
+    padding: 5px 50px;
+}
+
+#customlinks a{
+    display: inline-block;
+    padding: 5px 5px;
+    font-size: 12px;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: ease-in-out 0.5s;
+}
+
+#customlinks a:hover{
+    letter-spacing: 1px;
+    transition: ease-in-out 0.5s;
+}
+
+#container {
+    position: relative;
+    color: dodgerblue;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-left: 35%;
+    margin-top: 5%;
+    flex: 1;
+}
+
+#pagination {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    bottom: 0;
+    padding: 5px;
+}
+
+#pagination a{
+    color: dodgerblue;
+    display: inline-block;
+}
+
+a{
+    text-decoration: none;
+}
+
+.posts{
+    width: calc(50%);    
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    text-align: center;
+}
+
+.posts a{
+    font-style: italic;
+}
+
+.permalinks{
+    text-align: center;
+    padding-top: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.permalinks a{
+    color: dodgerblue;
+    text-decoration: none;
+    font-style: italic;
+    transition: ease-in-out 0.5s;
+}
+
+.permalinks a:hover{
+    letter-spacing: 1px;
+    transition: ease-in-out 0.5s;
+}
+
+.tags{
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.tags a{
+    color: dodgerblue;
+    text-decoration: none;
+    font-style: italic;
+    transition: ease-in-out 0.5s;
+}
+
+.tags a:hover{
+    letter-spacing: 1px;
+    transition: ease-in-out 0.5s;
+}
+
+.posts{
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.posts video{
+    border-radius: 20px;
+}
+
+.posts audio{
+    color: dodgerblue;
+}
+
+.posts button {
+    background-color: #fff;
+    color: dodgerblue;
+    border: 1px solid dodgerblue;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: white;
+  color: dodgerblue;
+  cursor: none;
+}
+
+audio::-webkit-media-controls-play-button {
+    outline: 1px solid dodgerblue;    
+    border-radius: 100px;
+}
+
+.posts audio[controls]{
+    color: dodgerblue;
+}
+
+#cr{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+}
+
+#cr a{
+    color: dodgerblue;
+}
+
+</style>
+<div class="cursor1"></div>
+<body>
+<center>
+<div id="sidebar">
+<!--
+<div id="links">
+    <ul><a href="/">Home</a></ul>
+    <ul><a href="/ask">Ask</a></ul>
+    <ul><a href="/submit">Submit</a></ul>
+    <ul><a href="/archive">Archive</a></ul>
+</div>
+-->
+<h1><a href="/">{Title}</a></h1>
+<br>
+<div id="customlinks">
+    {block:IfLink1Url}
+    <a href="{text:Link1Url}">{text:Link1}</a>
+{/block:IfLink1Url}
+
+{block:IfLink2Url}
+    <a href="{text:Link2Url}">{text:Link2}</a>
+{/block:IfLink2Url}
+
+{block:IfLink3Url}
+    <a href="{text:Link3Url}">{text:Link3}</a>
+{/block:IfLink3Url}
+</div>
+<br>
+<div id="desc">{block:Description}{Description}{/block:Description}</div>
+<br>
+<!--<center><div id="sbicon"><img src="{PortraitURL-64}"></div></center>-->
+<div id="customlinks">
+<table>
+<tr>
+<td>{block:IfLink4Url}
+    <a href="{text:Link4Url}">{text:Link4}</a>
+{/block:IfLink4Url}
+</td>
+<td>
+{block:IfLink5Url}
+    <a href="{text:Link5Url}">{text:Link5}</a>
+{/block:IfLink5Url}
+</td>
+</tr>
+<tr>
+<td>
+{block:IfLink6Url}
+    <a href="{text:Link6Url}">{text:Link6}</a>
+{/block:IfLink6Url}
+</td>
+<td>
+{block:IfLink7Url}
+    <a href="{text:Link7Url}">{text:Link7}</a>
+{/block:IfLink7Url}
+</td>
+</tr>
+</table>
+</div>
+</div>
+</center>
+<div id="container">
+{block:Posts}
+
+<div class="posts">
+
+{block:Text}{block:Title}<h1>{Title}</h1>{/block:Title}{Body}{/block:Text}
+
+{block:Photo}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{block:Caption}{Caption}{/block:Caption}{/block:Photo}
+
+{block:Panorama}{LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>{LinkCloseTag}{block:Caption}{Caption}{/block:Caption}{/block:Panorama}
+
+{block:Photoset}{Photoset-500}{block:Caption}{Caption}{/block:Caption}{/block:Photoset}
+
+{block:Quote}"{Quote}"{block:Source}{Source}{/block:Source}{/block:Quote}
+
+{block:Link}<a href="{URL}" class="link" {Target}>{Name}</a>{block:Description}{Description}{/block:Description}{/block:Link}
+
+{block:Chat}{block:Title}{Title}</a>{/block:Title}
+{block:Lines}<li>{block:Label}{Label}{/block:Label}{Line}</li>{/block:Lines}{/block:Chat}
+                        
+{block:Video}{Video-500}{block:Caption}{Caption}{/block:Caption}{/block:Video}
+
+{block:Audio}
+<div id="audioplayer">{AudioEmbed}{block:Caption}<div id="audiocaption">{Caption}</div>{/block:Caption}</div>
+{/block:Audio}
+
+<div class="permalinks">
+<a href="{Permalink}">{Month} {DayOfMonth} {Year}</a>
+<a href="{Permalink}">{block:NoteCount}{NoteCount}{/block:NoteCount}</a>
+</div>
+<br>
+<div class="tags">
+{block:HasTags}{block:Tags}<span style="color:;"> # </span><a href="{TagUrl}">{Tag}</a>{/block:Tags}{/block:HasTags}</div>
+
+</div>
+{/block:Posts}
+</div>
+<br>
+<center><div id="pagination">{block:Pagination}
+{block:PreviousPage}<a href="{PreviousPage}">◀◀</a>{/block:PreviousPage}
+&nbsp; ● &nbsp; {block:NextPage}<a href="{NextPage}">▶▶</a>{/block:NextPage}
+{/block:Pagination}</div></center>
+<div id="cr">
+    <a href="https://nr960.tumblr.com/">nr960</a>
+</div>
+
+</body>
+</html>
+
+<script>
+    function applyStyles() {
+        var screenWidth = window.innerWidth;
+        var sb = document.getElementById('sidebar');
+        var container = document.getElementById('container');
+
+        if (screenWidth <= 800) {
+            sb.style.display = 'none';
+            container.style.marginLeft = 'auto';
+            container.style.marginRight = 'auto';
+            container.style.maxWidth = '80%';
+        } 
+        //revert back to normal
+        else{
+            sb.style.display = '';
+            container.style.marginLeft = '';
+            container.style.marginRight = '';
+            container.style.maxWidth = '';
+        }
+    }
+
+    applyStyles();
+
+    window.addEventListener('resize', applyStyles);
+
+</script>
+
+<script>
+document.body.style.cursor = 'none';
+
+document.addEventListener('mousemove', (e) => {
+  const mouseX = e.clientX + window.scrollX;
+  const mouseY = e.clientY + window.scrollY;
+
+  const cursor1 = document.querySelector('.cursor1');
+  cursor1.style.left = mouseX + 'px';
+  cursor1.style.top = mouseY + 'px';
+
+  const mouseoverLink = isMouseoverLink(e.target);
+  const mouseoverButton = isMouseoverButton(e.target);
+
+  if (mouseoverLink || mouseoverButton) {
+    cursor1.style.width = '3.5px';
+    cursor1.style.height = '3.5px';
+  } else {
+    cursor1.style.width = '8px';
+    cursor1.style.height = '8px';
+  }
+});
+
+function isMouseoverLink(target) {
+  return target.tagName.toLowerCase() === 'a';
+}
+
+function isMouseoverButton(target) {
+  return target.tagName.toLowerCase() === 'button';
+}
+
+</script>

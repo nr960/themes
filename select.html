@@ -1,0 +1,285 @@
+<html>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+    <head>
+        <title>{Title}</title>
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        {block:Description}
+            <meta name="description" content="{MetaDescription}" />
+        {/block:Description}
+        <meta name="text:Link1" content=""/>
+        <meta name="text:Link1Url" content=""/>
+        <meta name="text:Link2" content=""/>
+        <meta name="text:Link2Url" content=""/>
+        <meta name="text:Link3" content=""/>
+        <meta name="text:Link3Url" content=""/>
+
+    </head>
+    
+<style type="text/css">
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+h1{
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#sidebar{
+    position: fixed;
+    height: 100%;
+    width: 25%;
+}
+
+#sidebar #links ul{
+  color: black;
+  margin: auto;
+  padding: 5px;
+  background-color: white;
+  font-family: Arial;
+  font-size: 12px;
+  border-top: 1px solid black;
+  text-transform: uppercase;
+}
+
+#sidebar a{
+  color: black;
+  text-decoration: none;
+}
+
+#sidebar a:hover{
+  font-weight: bold;
+  border: none;
+}
+
+#sidebar h1{
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px;
+}
+
+#sbicon{
+    border:1px solid black;
+    padding: 4px;
+    border-radius: 100px;
+    width: 30%;
+}
+
+#sbicon img{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 100px;
+}
+
+#desc{
+    font-size: 12px;
+    text-align: center;
+    padding: 10px 50px;
+}
+
+#customlinks a{
+    display: block;
+    padding: 5px;
+    font-size: 12px;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#pagination{
+    padding-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#container {
+    position: relative;
+    max-width: 35%;
+    margin-left: 40%;
+    flex: 1;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.posts{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 50px;
+    background-color: white;
+    border-top: 1px solid black;
+}
+
+.posts a{
+    font-style: italic;
+}
+
+.permalinks{
+    text-align: right;
+    padding-top: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.permalinks a{
+    color: black;
+    text-decoration: none;
+    font-style: italic;
+}
+
+.permalinks a:hover{
+    border-bottom: 1px solid black;
+}
+
+.tags{
+    text-align: right;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.tags a{
+    color: black;
+    text-decoration: none;
+    font-style: italic;
+}
+
+.tags a:hover{
+    border-bottom: 1px solid black;
+}
+
+.posts img{
+    padding: 2px;
+    border-bottom: 1px solid white;
+}
+
+.posts img:hover{
+    border-bottom: 1px solid black;
+}
+
+#cr{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+}
+
+</style>
+    
+<body>
+<div id="sidebar">
+<div id="links">
+    <ul><a href="/">Home</a></ul>
+    <ul><a href="/ask">Ask</a></ul>
+    <ul><a href="/submit">Submit</a></ul>
+    <ul><a href="/archive">Archive</a></ul>
+</div>
+<h1><a href="/">{Title}</a></h1>
+<div id="desc">{block:Description}{Description}{/block:Description}</div>
+<br>
+<center><div id="sbicon"><img src="{PortraitURL-64}"></div></center>
+<br>
+
+<div id="customlinks">
+{block:IfLink1Url}
+    <a href="{text:Link1Url}">{text:Link1}</a>
+{/block:IfLink1Url}
+
+{block:IfLink2Url}
+    <a href="{text:Link2Url}">{text:Link2}</a>
+{/block:IfLink2Url}
+
+{block:IfLink3Url}
+    <a href="{text:Link3Url}">{text:Link3}</a>
+{/block:IfLink3Url}
+</div>
+
+<div id="pagination">{block:Pagination}
+{block:PreviousPage}<a href="{PreviousPage}">⇐</a>{/block:PreviousPage}&nbsp;
+{block:NextPage}<a href="{NextPage}">⇒</a>{/block:NextPage}
+{/block:Pagination}</div>
+</div>
+
+<div id="container">
+{block:Posts}
+
+<div class="posts">
+
+{block:Text}{block:Title}<h1>{Title}</h1>{/block:Title}{Body}{/block:Text}
+
+{block:Photo}<div class="imgs"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/></div>{block:Caption}{Caption}{/block:Caption}{/block:Photo}
+
+{block:Panorama}{LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>{LinkCloseTag}{block:Caption}{Caption}{/block:Caption}{/block:Panorama}
+
+{block:Photoset}{Photoset-500}{block:Caption}{Caption}{/block:Caption}{/block:Photoset}
+
+{block:Quote}"{Quote}"{block:Source}{Source}{/block:Source}{/block:Quote}
+
+{block:Link}<a href="{URL}" class="link" {Target}>{Name}</a>{block:Description}{Description}{/block:Description}{/block:Link}
+
+{block:Chat}{block:Title}{Title}</a>{/block:Title}
+{block:Lines}<li>{block:Label}{Label}{/block:Label}{Line}</li>{/block:Lines}{/block:Chat}
+                        
+{block:Video}{Video-500}{block:Caption}{Caption}{/block:Caption}{/block:Video}
+
+{block:Audio}{AudioEmbed}{block:Caption}{Caption}{/block:Caption}{/block:Audio}
+
+<div class="permalinks">
+<a href="{Permalink}">{Month} {DayOfMonth} {Year}</a>
+<a href="{Permalink}">{block:NoteCount}{NoteCount}{/block:NoteCount}</a>
+</div>
+<br>
+<div class="tags">
+{block:HasTags}{block:Tags}<span style="color: 000;"> # </span><a href="{TagUrl}">{Tag}</a>{/block:Tags}{/block:HasTags}</div>
+
+</div>
+{/block:Posts}
+</div>
+
+<div id="cr">
+    <a href="https://nr960.tumblr.com/">nr960</a>
+</div>
+
+</body>
+</html>
+
+<script>
+    function applyStyles() {
+        var screenWidth = window.innerWidth;
+        var sb = document.getElementById('sidebar');
+        var container = document.getElementById('container');
+
+        if (screenWidth <= 800) {
+            sb.style.display = 'none';
+            container.style.marginLeft = 'auto';
+            container.style.marginRight = 'auto';
+            container.style.maxWidth = '80%';
+        } 
+        //revert back to normal
+        else{
+            sb.style.display = '';
+            container.style.marginLeft = '';
+            container.style.marginRight = '';
+            container.style.maxWidth = '';
+        }
+    }
+
+    applyStyles();
+
+    window.addEventListener('resize', applyStyles);
+
+</script>
