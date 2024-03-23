@@ -37,7 +37,7 @@
   position: absolute;
   width: 8px;
   height: 8px;
-  background-color: dodgerblue;
+  background-color: black;
   border-radius: 100px;
   transform: rotate(45deg);
   cursor: none;
@@ -50,9 +50,10 @@
 body{
     animation: fadein 2s;
     display: flex;
-    font-family: Arial;
+    font-family: arial;
     font-size: 12px;
-    color: #1e90ff;
+    background-color: lightgrey;
+    color: black;
 }
 
 h1{
@@ -69,17 +70,16 @@ h1{
 }
 
 #sidebar #links ul{
-  color: #1e90ff;
+  color: black;
   margin: auto;
   padding: 5px;
-  background-color: white;
-  font-family: Arial;
+  font-family: arial;
   font-size: 12px;
   text-transform: uppercase;
 }
 
 #sidebar a{
-  color: #1e90ff;
+  color: black;
   text-decoration: none;
   transition: ease-in-out 0.5s;
 }
@@ -99,7 +99,7 @@ h1{
 }
 
 #sbicon{
-    border:1px solid #1e90ff;
+    border:1px solid black;
     padding: 4px;
     border-radius: 100px;
     width: 30%;
@@ -135,7 +135,7 @@ h1{
 
 #container {
     position: relative;
-    color: dodgerblue;
+    color: black;
     display: flex;
     flex-wrap: wrap;
     max-width: 100%;
@@ -156,7 +156,7 @@ h1{
 }
 
 #pagination a{
-    color: dodgerblue;
+    color: black;
     display: inline-block;
 }
 
@@ -165,11 +165,11 @@ a{
 }
 
 .posts{
-    width: calc(50%);    
+    width: 50%;    
+    border-radius: 10px;
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 20px;
-    background-color: white;
     text-align: center;
 }
 
@@ -185,7 +185,7 @@ a{
 }
 
 .permalinks a{
-    color: dodgerblue;
+    color: black;
     text-decoration: none;
     font-style: italic;
     transition: ease-in-out 0.5s;
@@ -197,13 +197,14 @@ a{
 }
 
 .tags{
+    padding-bottom: 5px;
     text-align: center;
     font-size: 12px;
     text-transform: uppercase;
 }
 
 .tags a{
-    color: dodgerblue;
+    color: black;
     text-decoration: none;
     font-style: italic;
     transition: ease-in-out 0.5s;
@@ -214,41 +215,19 @@ a{
     transition: ease-in-out 0.5s;
 }
 
-.posts{
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-.posts video{
-    border-radius: 20px;
-}
-
-.posts audio{
-    color: dodgerblue;
-}
-
-.posts button {
-    background-color: #fff;
-    color: dodgerblue;
-    border: 1px solid dodgerblue;
-    border-radius: 3px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
 audio::-webkit-media-controls-panel {
-  background-color: white;
-  color: dodgerblue;
+  background-color: lightgrey;
   cursor: none;
 }
 
 audio::-webkit-media-controls-play-button {
-    outline: 1px solid dodgerblue;    
+    outline: 1px solid black;    
     border-radius: 100px;
 }
 
-.posts audio[controls]{
-    color: dodgerblue;
+audio::-webkit-media-controls-mute-button{
+    outline: 1px solid black;
+    border-radius: 100px;
 }
 
 #cr{
@@ -259,7 +238,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 #cr a{
-    color: dodgerblue;
+    color: black;
 }
 
 </style>
@@ -360,6 +339,7 @@ audio::-webkit-media-controls-play-button {
 </div>
 {/block:Posts}
 </div>
+
 <br>
 <center><div id="pagination">{block:Pagination}
 {block:PreviousPage}<a href="{PreviousPage}">◀◀</a>{/block:PreviousPage}
@@ -377,20 +357,31 @@ audio::-webkit-media-controls-play-button {
         var screenWidth = window.innerWidth;
         var sb = document.getElementById('sidebar');
         var container = document.getElementById('container');
+        var posts = document.querySelectorAll('.posts');
 
-        if (screenWidth <= 800) {
-            sb.style.display = 'none';
-            container.style.marginLeft = 'auto';
-            container.style.marginRight = 'auto';
-            container.style.maxWidth = '80%';
-        } 
-        //revert back to normal
-        else{
-            sb.style.display = '';
-            container.style.marginLeft = '';
-            container.style.marginRight = '';
-            container.style.maxWidth = '';
-        }
+    if (screenWidth <= 800) {
+        sb.style.display = 'none';
+        container.style.marginLeft = 'auto';
+        container.style.marginRight = 'auto';
+        container.style.marginTop = '10%';
+        container.style.maxWidth = '90%';
+        
+        posts.forEach(function(post) {
+            post.style.width = '100%';
+        });
+        
+    } else {
+        sb.style.display = '';
+        container.style.marginLeft = '';
+        container.style.marginRight = '';
+        container.style.marginTop = '';
+        container.style.maxWidth = '';
+        
+        posts.forEach(function(post) {
+            post.style.width = '50%';
+        });
+        
+    }
     }
 
     applyStyles();
