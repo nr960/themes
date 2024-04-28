@@ -1,0 +1,337 @@
+<html>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+    <head>
+        <title>{Title}</title>
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        {block:Description}
+            <meta name="description" content="{MetaDescription}" />
+        {/block:Description}
+        <meta name="text:Link1" content=""/>
+        <meta name="text:Link1Url" content=""/>
+        <meta name="text:Link2" content=""/>
+        <meta name="text:Link2Url" content=""/>
+        <meta name="text:Link3" content=""/>
+        <meta name="text:Link3Url" content=""/>
+
+    </head>
+    
+<style type="text/css">
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial;
+    font-size: 12px;
+}
+
+
+#overhead{
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+    display: block;
+}
+
+#overhead #links ul{
+  color: black;
+  margin: auto;
+  padding: 5px;
+  background-color: white;
+  font-family: Arial;
+  font-size: 12px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+#overhead a{
+  color: black;
+  text-decoration: none;
+}
+
+#overhead a:hover{
+  font-style: italic;
+}
+
+#overhead h1{
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px;
+}
+
+#overhead #sbicon{
+    border:1px solid black;
+    padding: 4px;
+    border-radius: 100px;
+    width: 8%;
+    transition: ease-in-out 0.5s;
+}
+
+#overhead #sbicon img{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 100px;
+    transition: ease-in-out 0.2s;
+}
+
+#title{
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+#desc{
+    font-size: 12px;
+    text-align: center;
+    padding: 10px 50px;
+}
+
+#sbicon{
+    border:1px solid black;
+    padding: 4px;
+    border-radius: 100px;
+    width: 30%;
+    transition: ease-in-out 0.5s;
+}
+
+#sbicon img{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 100px;
+}
+
+#customlinks a{
+    display: inline-block;
+    padding-left: 5px;
+    font-size: 12px;
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#pagination{
+    padding-top: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#pagination:hover{
+    font-style: italic;
+}
+
+#container {
+    max-width: 30%;
+    margin: auto;
+    display: block;
+    text-align: center;
+    
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.posts{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 50px;
+    background-color: white;
+    text-align: center;
+}
+
+.posts a:hover{
+    font-style: italic;
+}
+
+.permalinks{
+    text-align: center;
+    padding-top: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.permalinks a{
+    color: black;
+    text-decoration: none;
+}
+
+.permalinks a:hover{
+    font-style: italic;
+}
+
+.tags{
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.tags a{
+    color: black;
+    text-decoration: none;
+}
+
+.tags a:hover{
+    font-style: italic;
+}
+
+.posts img{
+    padding: 2px;
+}
+
+.permalinknotes a{
+    text-transform: uppercase;
+}
+
+.permalinknotes a:hover{
+    font-style: italic;
+}
+
+.permalinknotes img{
+    display: none;
+}
+
+#external{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    text-align: center;
+}
+#cr{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+}
+
+</style>
+    
+<body>
+
+<center>
+<div id="overhead">
+<br>
+<center><div id="sbicon"><a href="/"><img src="{PortraitURL-128}"></a></div></center>
+<br>
+<br>
+<div id="title"><a href="/">{Title}</a></div>
+<p>{Description}</p>
+<div id="links">
+    <ul><a href="/">Home</a></ul>
+    <ul><a href="/ask">Ask</a></ul>
+    <ul><a href="/archive">Archive</a></ul>
+</div>
+<br>
+<div id="customlinks">
+{block:IfLink1Url}
+    <a href="{text:Link1Url}">{text:Link1}</a>
+{/block:IfLink1Url}
+
+{block:IfLink2Url}
+    <a href="{text:Link2Url}">{text:Link2}</a>
+{/block:IfLink2Url}
+
+{block:IfLink3Url}
+    <a href="{text:Link3Url}">{text:Link3}</a>
+{/block:IfLink3Url}
+</div>
+<br>
+</div>
+</center>
+<br>
+<div id="container">
+{block:Posts}
+
+<div class="posts">
+
+{block:Text}{block:Title}<h1>{Title}</h1>{/block:Title}{Body}{/block:Text}
+
+{block:Photo}<div class="imgs"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/></div>{block:Caption}{Caption}{/block:Caption}{/block:Photo}
+
+{block:Panorama}{LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>{LinkCloseTag}{block:Caption}{Caption}{/block:Caption}{/block:Panorama}
+
+{block:Photoset}{Photoset-500}{block:Caption}{Caption}{/block:Caption}{/block:Photoset}
+
+{block:Quote}"{Quote}"{block:Source}{Source}{/block:Source}{/block:Quote}
+
+{block:Link}<a href="{URL}" class="link" {Target}>{Name}</a>{block:Description}{Description}{/block:Description}{/block:Link}
+
+{block:Chat}{block:Title}{Title}</a>{/block:Title}
+{block:Lines}<li>{block:Label}{Label}{/block:Label}{Line}</li>{/block:Lines}{/block:Chat}
+                        
+{block:Video}{Video-500}{block:Caption}{Caption}{/block:Caption}{/block:Video}
+
+{block:Audio}{AudioEmbed}{block:Caption}{Caption}{/block:Caption}{/block:Audio}
+
+<div class="permalinks">
+<a href="{Permalink}">{Month} {DayOfMonth} {Year}</a> /
+<a href="{Permalink}">{block:NoteCount}{NoteCount}{/block:NoteCount}</a>
+</div>
+<br>
+<div class="tags">
+{block:HasTags}{block:Tags}<span style="color: 000;"> # </span><a href="{TagUrl}">{Tag}</a>{/block:Tags}{/block:HasTags}</div>
+</div>
+
+<div class="permalinknotes">
+{block:PermalinkPage}
+    {block:PostNotes}
+        <div class="post-notes">
+            <ul class="notes-list">
+                {PostNotes}
+                    <ul>{NoteAuthor}{NoteBody}</ul>
+            </ul>
+        </div>
+    {/block:PostNotes}
+    <br>
+{/block:PermalinkPage}
+</div>
+
+{/block:Posts}
+   <div id="pagination">{block:Pagination}
+{block:PreviousPage}<a href="{PreviousPage}">⮜</a>{/block:PreviousPage}&nbsp;
+{block:NextPage}<a href="{NextPage}">⮞</a>{/block:NextPage}
+{/block:Pagination}</div>
+<br>
+</div>
+<div id="external">
+    <p>ELSEWHERE</p>
+    <a href="https://twitter.com/nr9601586">Twitter</a>
+    <br>
+    <br>
+    <a href="https://www.youtube.com/channel/UC7rikpaMpQklvuxqVjnCk1Q">YouTube</a>
+</div>
+<div id="cr">
+    <a href="https://nr960.tumblr.com/">nr960</a>
+</div>
+
+</body>
+</html>
+
+<script>
+    function resz() {
+        var screenWidth = window.innerWidth;
+        var container = document.getElementById('container');
+        var sidebaricon = document.getElementById('sbicon');
+
+        if (screenWidth <= 800) {
+            container.style.maxWidth = '80%';
+            sbicon.style.width = '14%';
+        } 
+        //revert back to normal
+        else{
+            container.style.maxWidth = '';
+            sbicon.style.width = '';
+        }
+    }
+
+    resz();
+
+    window.addEventListener('resize', resz);
+
+</script>
