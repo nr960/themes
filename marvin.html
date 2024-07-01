@@ -30,16 +30,21 @@
             box-sizing: border-box;
         }
         body {
-            display: flex;
+            -webkit-animation: fadein 2s linear forwards;
+            animation: fadein 2s linear forwards;
             color: #B26342;
             font-family: Arial;
             font-size: 80%;
             font-weight: normal;
-            background-color: #b26342;
-            background-image: url("https://cdn.discordapp.com/attachments/1032459458770653265/1256870748115435580/stars.gif?ex=66825799&is=66810619&hm=6e70b8b4511f656037447bf4b5084279511c233833688a185a5c52d134ed0ba8&");
-            background-blend-mode: multiply;
+            background-color: black;
+            background-image: url("https://cdn.discordapp.com/attachments/1156988658642067587/1257055336674885783/star_field_2.gif?ex=66830383&is=6681b203&hm=2d77743ed6d5296b3e818ebb9000a49b730ea421f7d693b0bd4c36c9f2b934fd&");
             background-attachment: fixed;
         }
+        
+        ::selection{
+            background-color: honeyDew;
+        }
+        
         h1 {
             font-weight: bold;
             font-size: 12px;
@@ -48,32 +53,52 @@
         text-decoration: none;
 
         }
-        #sidebar {
-            margin-left: 1%;
-            position: fixed;
-            width: 200px;
-            height: 200px;
-            margin-top: 2%;
-            margin-left: 2%;
-            background-image: url("https://media.tenor.com/SqJHatCJ40cAAAAi/mars.gif");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        #sidebar a {
-            text-decoration: none;
+        
+        #container {
+            max-width: 40%;
+            margin-top: 5%;
+            display: block;
+            margin: auto;
         }
         
-        #mars{
-            margin-left: 2%;
-            margin-top: 20%;
-            position: fixed;
+        #togglebg, #togglefilter{
+            padding-bottom: 5%;
             font-weight: bold;
+            text-transform: lowercase;
         }
-        #container {
-            position: relative;
-            max-width: 40%;
-            margin-left: 40%;
-            margin-top: 5%;
+        
+        #togglebg a, #togglefilter a{
+            padding: 1%;
+            margin-left: 1%;
+            font-weight: bold;
+            text-transform: lowercase;
+        }
+        
+        #togglebg button, #togglefilter button{
+            cursor: pointer;
+            border: none;
+            white-space: nowrap;
+            background-color: #B26342;
+            width: 20px;
+            border-radius: 3px;
+            transition: ease-in-out 0.5s;
+        }
+        
+        #togglebg button a, #togglefilter button a{
+            opacity: 0%;
+            color: #b26342;
+            transition: ease-in-out 0.5s;
+        }
+        
+        #togglebg button:hover, #togglefilter button:hover{
+            width: 80px;
+            transition: ease-in-out 0.5s;
+        }
+        
+        #togglebg button:hover a, #togglefilter button:hover a{
+            color: #000;
+            opacity: 100%;
+            transition: ease-in-out 0.5s;
         }
         
         #links{
@@ -113,6 +138,14 @@
             opacity: 100%;
             transition: ease-in-out 0.5s;
         }
+        
+        table{
+            margin-bottom: 35px;
+        }
+        
+        td{
+            padding-right: 45px
+        }
 
         .posts {
             width: 100%;
@@ -132,18 +165,20 @@
         }
         
         .posts img {
-            opacity: 65%;
+            opacity: 50%;
             border-radius: 5%;
             border: 1px solid black;
             transition: ease-in-out 0.5s;
+            filter: sepia(100%);
         }
         .posts img:hover {
             opacity: 100%;
             transition: ease-in-out 0.5s;
+            filter: none;
         }
         
         .permalinks{
-            text-align: right;
+            text-align: left;
             padding-top: 1%;
             font-weight: bold;
             text-transform: lowercase;
@@ -234,63 +269,41 @@
     </style>
 </head>
 <body>
-
-<div id="sidebar">
-    <div id="pagination">
+<div id="pagination">
         {block:Pagination}
         {block:PreviousPage}<a href="{PreviousPage}">⟪</a>{/block:PreviousPage}
         &nbsp;
         {block:NextPage}<a href="{NextPage}">⟫</a>{/block:NextPage}
         {/block:Pagination}
-    </div>
 </div>
-<!--
-<div id="mars">
- <p id="demo"></p>
-<script>
-var facts = [
-   "Mass: 6.39 × 10^23 kilograms ",
-   "Diameter: 6790 kilometers",
-   "Circumference: 21,344 kilometers", 
-   "Known Satellites: 2",
-   "Notable Satellites: Phobos, Deimos",
-   "Orbit Period: 687 Earth days",
-   "Orbit Distance: 229 million kilometers", 
-   "Eccentricity: 0.093"
-];
-var lineIndex = 0;
-var charIndex = 0;
-var speed = 150;
 
-function typeWriter() {
-  if (lineIndex < facts.length) {
-    var line = facts[lineIndex];
-    if (charIndex < line.length) {
-      document.getElementById("demo").innerHTML += line.charAt(charIndex);
-      charIndex++;
-      setTimeout(typeWriter, speed);
-    } else {
-      document.getElementById("demo").innerHTML += '<br>';
-      lineIndex++;
-      charIndex = 0;
-      setTimeout(typeWriter, speed);
-    }
-  }
-}
-
-typeWriter();
-
-</script>
-</div>
--->
 <div id="container">
+<table>
+<tr>
+<td>
 <div id="links">
 <p>navigation</p>
     <button><a href="/">Home</a></button>
     <button><a href="/ask">Ask</a></button>
-    <button><a href="/submit">Submit</a></button>
     <button><a href="/archive">Archive</a></button>
 </div>
+</td>
+<td>
+<div id="togglebg">
+<p>background</p>
+    <button onclick="animatedBg()"><a>star field</a></button>
+    <button onclick="blackBg()"><a>black</a></button>
+</div>
+</td>
+<td>
+<div id="togglefilter">
+<p>post filters</p>
+    <button onclick="sepia()"><a>sepia</a></button>
+    <button onclick="noFilter()"><a>none</a></button>
+</div>
+</td>
+</tr>
+</table>
     <div class="content">
         <div class="autopagerize_page_element">
             {block:Posts}
@@ -335,9 +348,9 @@ typeWriter();
     </div>
 </div>
 <br>
-<div id="cornermarvin">
+<!--<div id="cornermarvin">
     <img src="https://64.media.tumblr.com/2827add0add30740336d9ef766c9a196/954ec00dd975ce4a-d7/s100x200/a0f1d05f6f9e3d4d67fff3b2f9c889e366d64632.pnj">
-</div>
+</div>-->
 <div id="cr">
     <a href="https://nr960.tumblr.com/">nr960</a>
 </div>
@@ -357,24 +370,37 @@ typeWriter();
 </script>
 
 <script>
+    function animatedBg(){
+        document.body.style.backgroundImage = "";
+    }
+    function blackBg(){
+        document.body.style.backgroundImage = "none";
+    }
+</script>
+
+<script>
+    function sepia(){
+        let images = document.querySelectorAll('.posts img');
+        images.forEach(image => {
+                image.style.filter = '';
+            });    
+    }
+    function noFilter(){
+        let images = document.querySelectorAll('.posts img');
+        images.forEach(image => {
+                image.style.filter = 'none';
+            });    
+    }
+</script>
+
+<script>
     function applyStyles() {
         var screenWidth = window.innerWidth;
-        var sb = document.getElementById('sidebar');
         var container = document.getElementById('container');
-        //var mars = document.getElementById('mars');
 
         if (screenWidth <= 800) {
-            sb.style.display = 'none';
-            //mars.style.display='none';
-            container.style.marginLeft = 'auto';
-            container.style.marginRight = 'auto';
             container.style.maxWidth = '80%';
         } else {
-            sb.style.display = '';
-            //mars.style.display = '';
-            container.style.marginLeft = '';
-            container.style.marginRight = '';
-            container.style.marginTop = '';
             container.style.maxWidth = '';
         }
     }
