@@ -6,7 +6,7 @@
         <link rel="shortcut icon" href="{Favicon}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         {block:Description}
-            <meta name="description" content="{MetaDescription}" />
+        <meta name="description" content="{MetaDescription}" />
         {/block:Description}
         <meta name="text:Link1" content=""/>
         <meta name="text:Link1Url" content=""/>
@@ -27,131 +27,74 @@
     
 <style type="text/css">
 
+ ::-webkit-scrollbar {
+          width: 3px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: white;
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: #CCCCCC;
+          border-radius: 3px;
+        }
+    
+
 *{
-    box-sizing: border-box;
-    cursor: none;
     animation: fadein 2s;
 }
 
-.cursor1 {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background-color: black;
-  border-radius: 100px;
-  transform: rotate(45deg);
-  cursor: none;
-  filter: blur(0.2px);
-  pointer-events: none;
-  transition: 0.3s ease-out;
-  z-index: 1;
-}
 
 body{
+    margin: auto;
     animation: fadein 2s;
-    display: flex;
     font-family: arial;
     font-size: 12px;
-    background-color: lightgrey;
+    background-color: white;    
     color: black;
+      background: white;
+  background-image: radial-gradient(Lavender 1.5px, transparent 0);
+  background-size: 50px 50px;
+  transition: ease-in-out 2s;
+}
+
+#center{
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    overflow-x: hidden;
+}
+
+::selection{
+    background-color: #CCCCCC;
 }
 
 h1{
-    font-size: 14px;
+    padding-top: 2%;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    font-size: 12px;
     font-weight: bold;
-}
-
-#sidebar{
-    position: fixed;
-    height: 100%;
-    width: 25%;
-    padding-top: 5%;
-    
-}
-
-#sidebar #links ul{
-  color: black;
-  margin: auto;
-  padding: 5px;
-  font-family: arial;
-  font-size: 12px;
-  text-transform: uppercase;
-}
-
-#sidebar a{
-  color: black;
-  text-decoration: none;
-  transition: ease-in-out 0.5s;
-}
-
-#sidebar a:hover{
-  font-weight: bold;
-  border: none;
-  letter-spacing: 1px;
-  transition: ease-in-out 0.5s;
-}
-
-#sidebar h1{
-    font-size: 12px;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 5px;
-}
-
-#sbicon{
-    border:1px solid black;
-    padding: 4px;
-    border-radius: 100px;
-    width: 30%;
-}
-
-#sbicon img{
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 100px;
-}
-
-#desc{
-    font-size: 12px;
-    padding: 5px 50px;
-}
-
-#customlinks a{
-    display: inline-block;
-    padding: 5px 5px;
-    font-size: 12px;
-    border: none;
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
     transition: ease-in-out 0.5s;
 }
 
-#customlinks a:hover{
+a:hover{
     letter-spacing: 1px;
     transition: ease-in-out 0.5s;
 }
 
-#container {
-    position: relative;
-    color: black;
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 100%;
-    margin-left: 35%;
-    margin-top: 5%;
-    flex: 1;
-}
-
 #pagination {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     width: 100%;
     font-weight: bold;
     text-align: center;
-    bottom: 0;
     padding: 5px;
 }
 
@@ -160,34 +103,39 @@ h1{
     display: inline-block;
 }
 
-a{
-    text-decoration: none;
-}
-
 .posts{
-    width: 50%;    
     border-radius: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
     margin-bottom: 20px;
     text-align: center;
+    animation: fadeIn ease 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    max-width: 100%;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .posts a{
-    font-style: italic;
+    text-decoration: underline;
 }
 
 .permalinks{
     text-align: center;
     padding-top: 10px;
     font-size: 12px;
-    text-transform: uppercase;
 }
 
 .permalinks a{
     color: black;
+    font-size: 12px;
     text-decoration: none;
-    font-style: italic;
     transition: ease-in-out 0.5s;
 }
 
@@ -200,13 +148,12 @@ a{
     padding-bottom: 5px;
     text-align: center;
     font-size: 12px;
-    text-transform: uppercase;
 }
 
 .tags a{
     color: black;
+    font-size: 12px;
     text-decoration: none;
-    font-style: italic;
     transition: ease-in-out 0.5s;
 }
 
@@ -215,18 +162,34 @@ a{
     transition: ease-in-out 0.5s;
 }
 
+video{
+    border-radius: 20px;
+    width: 40%;
+}
+
+audio{
+   /*box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.1);*/
+   max-width: 100%;
+   margin-bottom: 5%;
+   border-radius: 50px;
+}
+
 audio::-webkit-media-controls-panel {
-  background-color: lightgrey;
-  cursor: none;
+  background: white;
+  padding-left: 5%;
 }
 
 audio::-webkit-media-controls-play-button {
-    outline: 1px solid black;    
+    margin-right: 1%;
+    /*outline: 1px solid black;*/
     border-radius: 100px;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
+
 }
 
 audio::-webkit-media-controls-mute-button{
-    outline: 1px solid black;
+    /*outline: 1px solid black;*/
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
     border-radius: 100px;
 }
 
@@ -238,24 +201,48 @@ audio::-webkit-media-controls-mute-button{
 }
 
 #cr a{
+    font-weight: normal;
+    font-size: 12px;
     color: black;
 }
 
+#cr a:hover{
+    letter-spacing: 0px;
+}
+
+.collapsible {
+  background-color: transparent;
+  font-size: 12px;
+  border: none;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  transition: ease-in-out 0.5s;
+  cursor: pointer;
+}
+
+.collapsible:hover{
+    letter-spacing: 1px;
+    transition: ease-in-out 0.5s;
+}
+
+.content {
+  text-align: center;
+  padding: 0 18px;
+  max-height: 0;
+  font-size: 12px;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
 </style>
-<div class="cursor1"></div>
 <body>
+<div id="container">
+<div id="center">
 <center>
-<div id="sidebar">
-<!--
-<div id="links">
-    <ul><a href="/">Home</a></ul>
-    <ul><a href="/ask">Ask</a></ul>
-    <ul><a href="/submit">Submit</a></ul>
-    <ul><a href="/archive">Archive</a></ul>
-</div>
--->
 <h1><a href="/">{Title}</a></h1>
-<br>
+<button class="collapsible">Equipment list +</button>
+<div class="content"><div id="desc">{block:Description}{Description}{/block:Description}</div></div>
 <div id="customlinks">
     {block:IfLink1Url}
     <a href="{text:Link1Url}">{text:Link1}</a>
@@ -269,42 +256,12 @@ audio::-webkit-media-controls-mute-button{
     <a href="{text:Link3Url}">{text:Link3}</a>
 {/block:IfLink3Url}
 </div>
-<br>
-<div id="desc">{block:Description}{Description}{/block:Description}</div>
-<br>
-<!--<center><div id="sbicon"><img src="{PortraitURL-64}"></div></center>-->
-<div id="customlinks">
-<table>
-<tr>
-<td>{block:IfLink4Url}
-    <a href="{text:Link4Url}">{text:Link4}</a>
-{/block:IfLink4Url}
-</td>
-<td>
-{block:IfLink5Url}
-    <a href="{text:Link5Url}">{text:Link5}</a>
-{/block:IfLink5Url}
-</td>
-</tr>
-<tr>
-<td>
-{block:IfLink6Url}
-    <a href="{text:Link6Url}">{text:Link6}</a>
-{/block:IfLink6Url}
-</td>
-<td>
-{block:IfLink7Url}
-    <a href="{text:Link7Url}">{text:Link7}</a>
-{/block:IfLink7Url}
-</td>
-</tr>
-</table>
-</div>
-</div>
-</center>
-<div id="container">
-{block:Posts}
 
+<br>
+<br>
+
+
+{block:Posts}
 <div class="posts">
 
 {block:Text}{block:Title}<h1>{Title}</h1>{/block:Title}{Body}{/block:Text}
@@ -327,9 +284,8 @@ audio::-webkit-media-controls-mute-button{
 {block:Audio}
 <div id="audioplayer">{AudioEmbed}{block:Caption}<div id="audiocaption">{Caption}</div>{/block:Caption}</div>
 {/block:Audio}
-
 <div class="permalinks">
-<a href="{Permalink}">{Month} {DayOfMonth} {Year}</a>
+<a href="{Permalink}">{Month} {DayOfMonth} {Year}</a> &nbsp; • &nbsp;
 <a href="{Permalink}">{block:NoteCount}{NoteCount}{/block:NoteCount}</a>
 </div>
 <br>
@@ -338,13 +294,18 @@ audio::-webkit-media-controls-mute-button{
 
 </div>
 {/block:Posts}
-</div>
-
+<br>
+<center><a style="font-size: 12px" href="/random">Shuffle</a></center>
 <br>
 <center><div id="pagination">{block:Pagination}
 {block:PreviousPage}<a href="{PreviousPage}">◀◀</a>{/block:PreviousPage}
-&nbsp; ● &nbsp; {block:NextPage}<a href="{NextPage}">▶▶</a>{/block:NextPage}
+&nbsp; • &nbsp; {block:NextPage}<a href="{NextPage}">▶▶</a>{/block:NextPage}
 {/block:Pagination}</div></center>
+</div>
+</center>
+</div>
+</div>
+
 <div id="cr">
     <a href="https://nr960.tumblr.com/">nr960</a>
 </div>
@@ -353,14 +314,12 @@ audio::-webkit-media-controls-mute-button{
 </html>
 
 <script>
-    function applyStyles() {
+    function resz() {
         var screenWidth = window.innerWidth;
-        var sb = document.getElementById('sidebar');
         var container = document.getElementById('container');
         var posts = document.querySelectorAll('.posts');
 
     if (screenWidth <= 800) {
-        sb.style.display = 'none';
         container.style.marginLeft = 'auto';
         container.style.marginRight = 'auto';
         container.style.marginTop = '10%';
@@ -371,54 +330,37 @@ audio::-webkit-media-controls-mute-button{
         });
         
     } else {
-        sb.style.display = '';
         container.style.marginLeft = '';
         container.style.marginRight = '';
         container.style.marginTop = '';
         container.style.maxWidth = '';
         
         posts.forEach(function(post) {
-            post.style.width = '50%';
+        post.style.width = '50%';
         });
         
     }
     }
 
-    applyStyles();
+    resz();
 
-    window.addEventListener('resize', applyStyles);
+    window.addEventListener('resize', resz);
 
 </script>
 
 <script>
-document.body.style.cursor = 'none';
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
 
-document.addEventListener('mousemove', (e) => {
-  const mouseX = e.clientX + window.scrollX;
-  const mouseY = e.clientY + window.scrollY;
-
-  const cursor1 = document.querySelector('.cursor1');
-  cursor1.style.left = mouseX + 'px';
-  cursor1.style.top = mouseY + 'px';
-
-  const mouseoverLink = isMouseoverLink(e.target);
-  const mouseoverButton = isMouseoverButton(e.target);
-
-  if (mouseoverLink || mouseoverButton) {
-    cursor1.style.width = '3.5px';
-    cursor1.style.height = '3.5px';
-  } else {
-    cursor1.style.width = '8px';
-    cursor1.style.height = '8px';
-  }
-});
-
-function isMouseoverLink(target) {
-  return target.tagName.toLowerCase() === 'a';
-}
-
-function isMouseoverButton(target) {
-  return target.tagName.toLowerCase() === 'button';
-}
-
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
 </script>
